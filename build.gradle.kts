@@ -10,8 +10,8 @@ plugins {
     // application
     // distribution
     kotlin("jvm") version "1.5.20"
-    id("com.github.spotbugs") version "4.7.9"
-    id("com.diffplug.spotless") version "5.17.1"
+    id("com.github.spotbugs") version "5.0.3"
+    id("com.diffplug.spotless") version "6.0.5"
     id("com.github.kt3k.coveralls") version "2.12.0"
     id("com.palantir.git-version") version "0.12.3" apply false
 }
@@ -76,8 +76,22 @@ repositories {
 
 dependencies {
     testImplementation("org.codehaus.groovy:groovy-all:3.0.9")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+}
+
+spotbugs {
+    excludeFilter.set(project.file("config/spotbugs/exclude.xml"))
+    tasks.spotbugsMain {
+        reports.create("html") {
+            required.set(true)
+        }
+    }
+    tasks.spotbugsTest {
+        reports.create("html") {
+            required.set(true)
+        }
+    }
 }
 
 tasks.getByName<Test>("test") {
