@@ -9,7 +9,7 @@ plugins {
     jacoco
     // application
     // distribution
-    kotlin("jvm") version "1.5.20"
+    kotlin("jvm") version "1.6.21"
     id("com.github.spotbugs") version "5.0.3"
     id("com.diffplug.spotless") version "6.5.1"
     id("com.github.kt3k.coveralls") version "2.12.0"
