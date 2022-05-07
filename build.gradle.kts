@@ -9,9 +9,9 @@ plugins {
     jacoco
     // application
     // distribution
-    kotlin("jvm") version "1.5.20"
+    kotlin("jvm") version "1.6.21"
     id("com.github.spotbugs") version "5.0.6"
-    id("com.diffplug.spotless") version "6.5.1"
+    id("com.diffplug.spotless") version "6.5.2"
     id("com.github.kt3k.coveralls") version "2.12.0"
     id("com.palantir.git-version") version "0.12.3" apply false
 }
@@ -75,7 +75,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.codehaus.groovy:groovy-all:3.0.9")
+    testImplementation("org.codehaus.groovy:groovy-all:3.0.10")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
