@@ -75,7 +75,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.apache.groovy:groovy-all:4.0.2")
+    testImplementation("org.apache.groovy:groovy-all:4.0.3")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
