@@ -11,7 +11,7 @@ plugins {
     // distribution
     kotlin("jvm") version "1.7.0"
     id("com.github.spotbugs") version "5.0.7"
-    id("com.diffplug.spotless") version "6.6.1"
+    id("com.diffplug.spotless") version "6.7.0"
     id("com.github.kt3k.coveralls") version "2.12.0"
     id("com.palantir.git-version") version "0.12.3" apply false
 }
