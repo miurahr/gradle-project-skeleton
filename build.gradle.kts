@@ -5,14 +5,12 @@ import java.util.Properties
 plugins {
     groovy
     java
-    checkstyle
     jacoco
     // application
     // distribution
     kotlin("jvm") version "1.7.0"
     id("com.github.spotbugs") version "5.0.9"
     id("com.diffplug.spotless") version "6.7.2"
-    id("com.github.kt3k.coveralls") version "2.12.0"
     id("com.palantir.git-version") version "0.12.3" apply false
 }
 
@@ -71,7 +69,6 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 dependencies {
@@ -110,13 +107,8 @@ jacoco {
 tasks.jacocoTestReport {
     dependsOn(tasks.test) // tests are required to run before generating the report
     reports {
-        xml.required.set(true) // coveralls plugin depends on xml format report
         html.required.set(true)
     }
-}
-
-coveralls {
-    jacocoReportPath = "build/reports/jacoco/test/jacocoTestReport.xml"
 }
 
 tasks.withType<JavaCompile> {
