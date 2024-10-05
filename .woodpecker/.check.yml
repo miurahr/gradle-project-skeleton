@@ -16,6 +16,6 @@ clone:
 
 steps:
   build:
-    image: adoptopenjdk/openjdk11:alpine
+    image: eclipse-temurin:17
     commands:
-      - ./gradlew --no-daemon clean build
+      - ./gradlew --no-daemon -PenvIsCi=true clean build

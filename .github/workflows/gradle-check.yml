@@ -11,17 +11,30 @@ jobs:
   gradle-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-java@v3
+    - uses: actions/checkout@v4
+    - uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: '8'
+        java-version: '17'
     - uses: kiancross/checkstyle-annotations-action@v1
-    - uses: eskatos/gradle-command-action@v2
-      name: gradle check
+    - uses: gradle/gradle-build-action@v3
+      name: Setup Gradle
+      id: setup-gradle
+    - name: gradle check
+      run: ./gradlew  -PenvIsCi=true check
+      id: gradle
+    - name: "Add Build Scan URL as PR comment"
+      uses: actions/github-script@v7
+      if: github.event_name == 'pull_request' && failure()
       with:
-        arguments: check
-    - name: publish coveralls
-      run: ./gradlew coveralls
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `❌ ${{ github.workflow }} **failed**.
+
+             Please look a Gradle Scan page for details: 
+             ${{ steps.gradle.outputs.build-scan-url }}`
+          })

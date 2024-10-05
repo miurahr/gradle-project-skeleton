@@ -7,7 +7,7 @@ plugins {
     `maven-publish`
     alias(libs.plugins.spotbugs)
     alias(libs.plugins.spotless)
-    alias(libs.plugins.git.version)
+    alias(libs.plugins.git.version) apply false
     alias(libs.plugins.nexus.publish)
 }
 
@@ -33,12 +33,20 @@ if (dotgit.exists()) {
     }
 }
 
+tasks.wrapper {
+    distributionType = Wrapper.DistributionType.BIN
+    gradleVersion = "8.10"
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation(libs.slf4j.api)
+    implementation(libs.slf4j.format.jdk14)
     testImplementation(libs.junit.jupiter)
+    testRuntimeOnly(libs.slf4j.simple)
 }
 
 java {
@@ -55,7 +63,7 @@ tasks.named<Test>("test") {
 
 tasks.jar {
     manifest {
-        attributes("Automatic-Module-Name" to "tokyo.northside.texparser")
+        attributes("Automatic-Module-Name" to "tokyo.northside.example")
     }
 }
 
@@ -64,7 +72,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
             groupId = "tokyo.northside"
-            artifactId = "texparser"
+            artifactId = "example"
             pom {
                 name.set("example")
                 description.set("Example Library")
