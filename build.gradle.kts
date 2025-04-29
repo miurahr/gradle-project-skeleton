@@ -46,6 +46,8 @@ dependencies {
     implementation(libs.slf4j.api)
     implementation(libs.slf4j.format.jdk14)
     testImplementation(libs.junit.jupiter)
+    testImplementation(libs.mockit.core)
+    testImplementation(libs.wiremock)
     testRuntimeOnly(libs.slf4j.simple)
 }
 
