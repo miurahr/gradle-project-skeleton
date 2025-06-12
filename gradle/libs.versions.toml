@@ -4,7 +4,7 @@ junit = "4.13.2"
 junit5 = "5.13.1"
 slf4j_format = "0.5.1"
 mockit = "5.18.0"
-wiremock = "3.13.0"
+wiremock = "3.13.1"
 
 [libraries]
 slf4j-api = {group = "org.slf4j", name = "slf4j-api",  version.ref = "slf4j"}
