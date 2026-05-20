@@ -1,7 +1,7 @@
 [versions]
 slf4j = "2.0.18"
 junit = "4.13.2"
-junit5 = "6.0.3"
+junit5 = "6.1.0"
 slf4j_format = "0.5.1"
 mockit = "5.23.0"
 wiremock = "3.13.2"
